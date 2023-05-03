@@ -1,5 +1,5 @@
 create table Clients (
-	clientID int NOT NULL PRIMARY KEY,
+	clientID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	Name varchar(50),
 	NIP char(10) UNIQUE,
 	Phone char(11) UNIQUE,
@@ -18,7 +18,7 @@ create table Clients (
 )
 
 CREATE table Models (
-	modelID int NOT NULL PRIMARY KEY,
+	modelID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	modelName char(20),
 	Type char (20),
 	worthValue decimal(15, 2)
@@ -39,7 +39,7 @@ CREATE table MDF (
 )
 
 CREATE table Orders (
-	orderID int NOT NULL PRIMARY KEY,
+	orderID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	modelID int NOT NULL FOREIGN KEY REFERENCES Models(modelID),
 	colorID int NOT NULL FOREIGN KEY REFERENCES Colors(colorID),
 	mdfID int NOT NULL FOREIGN KEY REFERENCES MDF(mdfID),
@@ -48,7 +48,7 @@ CREATE table Orders (
 
 CREATE table clientsOrders (
 	clientID int NOT NULL FOREIGN KEY REFERENCES Clients(clientID),
-	orderID int NOT NULL FOREIGN KEY REFERENCES Orders(orderID),
+	orderID int NOT NULL FOREIGN KEY REFERENCES Orders(orderID) UNIQUE,
 	orderDate date NOT NULL,
 	orderValue decimal(15,2) NOT NULL
 )

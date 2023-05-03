@@ -5,7 +5,7 @@ INSERT INTO MDF
 VALUES (19, 'FINSA 19', 'Wilgocioodporna', 275.00) 
 
 INSERT INTO MDF
-VALUES (22, 'MDF 2', 'Zwyk³a', 235.00)
+VALUES (22, 'MDF 22', 'Zwyk³a', 235.00)
 
 INSERT INTO MDF
 VALUES (25, 'FINSA 25', 'Wilgocioodporna', 310.00) 

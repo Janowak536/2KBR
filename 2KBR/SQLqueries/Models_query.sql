@@ -1,17 +1,32 @@
 INSERT INTO Models
-VALUES (1, 'Ramiak', 'Fronty', 100.00)
+VALUES ('Ramiak', 'Fronty', 100.00)
 
 INSERT INTO Models
-VALUES (2, 'Sprint', 'Fronty', 93.00)
+VALUES ('Sprint', 'Fronty', 93.00)
 
 INSERT INTO Models
-VALUES (3, 'PBO', 'Fronty', 10.00)
+VALUES ('PBO', 'Fronty', 10.00)
 
 INSERT INTO Models
-VALUES (4, 'PGO', 'Fronty', 100.00)
+VALUES ('PGO', 'Fronty', 100.00)
 
 INSERT INTO Models
-VALUES (5, 'G', 'Parapety', 0.00)
+VALUES ('G', 'Parapety', 0.00)
 
 INSERT INTO Models
-VALUES (1, 'C', 'Parapety', 0.00)
+VALUES ('B', 'Parapety', 0.00)
+
+INSERT INTO Models
+VALUES ('C', 'Parapety', 0.00)
+
+INSERT INTO Models
+VALUES ('E', 'Parapety', 0.00)
+
+INSERT INTO Models
+VALUES ('F', 'Parapety', 0.00)
+
+INSERT INTO Models
+VALUES ('G', 'Parapety', 0.00)
+
+INSERT INTO Models
+VALUES ('I', 'Parapety', 0.00)
