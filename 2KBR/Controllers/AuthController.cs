@@ -51,7 +51,7 @@ namespace _2KBR.Controllers
             }
             string token = CreateToken(user);
 
-            return Ok(token);
+            return Ok(new { token });
         }
         private string CreateToken(User user)
         {
