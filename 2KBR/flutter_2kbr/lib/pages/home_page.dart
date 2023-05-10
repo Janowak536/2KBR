@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2kbr/data/models/weather_page.dart';
+import 'package:flutter_2kbr/pages/login_page.dart';
+import 'package:flutter_2kbr/pages/weather_page.dart';
+import 'package:flutter_2kbr/providers/auth_provider.dart';
+import 'package:flutter_2kbr/widgets/custom_appbar.dart'; // Import CustomAppBar
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,27 +12,51 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WeatherPage()),
-                );
-              },
-              child: const Text('Fetch Weather Forecast'),
-            ),
-          ],
+    final authProvider = Provider.of<AuthProvider>(context);
+
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: CustomAppBar(
+          onActionPressed: () => authProvider.isLoggedIn
+              ? authProvider.logout()
+              : _navigateToLogin(),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              authProvider.isLoggedIn
+                  ? ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WeatherPage()),
+                        );
+                      },
+                      child: const Text('Fetch Weather Forecast'),
+                    )
+                  : const Text('Please log in to fetch weather forecast'),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void _navigateToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    ).then((_) {
+      setState(() {});
+    });
   }
 }

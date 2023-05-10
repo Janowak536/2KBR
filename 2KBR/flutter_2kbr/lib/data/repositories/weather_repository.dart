@@ -1,6 +1,6 @@
 import 'package:flutter_2kbr/data/services/api_service.dart';
 
-import '../weather_forecast.dart';
+import '../models/weather_forecast.dart';
 
 class WeatherRepository {
   final ApiService _apiService;

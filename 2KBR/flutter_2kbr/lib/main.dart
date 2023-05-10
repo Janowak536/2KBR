@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2kbr/pages/login_page.dart';
+import 'package:flutter_2kbr/pages/colors/material_colors.dart';
+import 'package:flutter_2kbr/pages/home_page.dart';
+import 'package:flutter_2kbr/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,12 +11,16 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Weather App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Weather App',
+        theme: ThemeData(
+          primarySwatch: myPrimarySwatchColor,
+        ),
+        home: HomePage(),
       ),
-      home: LoginPage(),
     );
   }
 }

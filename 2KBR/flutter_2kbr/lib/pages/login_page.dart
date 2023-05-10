@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2kbr/pages/home_page.dart';
+import 'package:flutter_2kbr/pages/register_page.dart';
 import 'package:flutter_2kbr/data/services/api_service.dart';
+import 'package:flutter_2kbr/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -42,6 +45,8 @@ class _LoginPageState extends State<LoginPage> {
                       _usernameController.text,
                       _passwordController.text,
                     );
+                    Provider.of<AuthProvider>(context, listen: false)
+                        .checkLoginStatus();
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
@@ -51,6 +56,16 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
                 child: const Text('Login'),
+              ),
+              SizedBox(height: 8),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
+                  );
+                },
+                child: const Text('Sign Up'),
               ),
             ],
           ),

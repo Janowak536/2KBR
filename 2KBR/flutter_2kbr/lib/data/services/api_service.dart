@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_2kbr/data/weather_forecast.dart';
+import 'package:flutter_2kbr/data/models/weather_forecast.dart';
 
 class ApiService {
   final String baseUrl = 'https://localhost:7027';
