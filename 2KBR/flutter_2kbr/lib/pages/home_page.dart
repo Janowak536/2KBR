@@ -3,6 +3,7 @@ import 'package:flutter_2kbr/pages/login_page.dart';
 import 'package:flutter_2kbr/pages/weather_page.dart';
 import 'package:flutter_2kbr/providers/auth_provider.dart';
 import 'package:flutter_2kbr/widgets/custom_appbar.dart'; // Import CustomAppBar
+import 'package:flutter_2kbr/widgets/navigate_animation.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,11 +36,7 @@ class _HomePageState extends State<HomePage> {
               authProvider.isLoggedIn
                   ? ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WeatherPage()),
-                        );
+                        navigateWithoutAnimation(context, WeatherPage());
                       },
                       child: const Text('Fetch Weather Forecast'),
                     )
@@ -53,9 +50,11 @@ class _HomePageState extends State<HomePage> {
 
   void _navigateToLogin() {
     Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
-    ).then((_) {
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation1, animation2) => LoginPage(),
+          transitionDuration: Duration(seconds: 0),
+        )).then((_) {
       setState(() {});
     });
   }

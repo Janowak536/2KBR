@@ -3,6 +3,7 @@ import 'package:flutter_2kbr/pages/home_page.dart';
 import 'package:flutter_2kbr/pages/register_page.dart';
 import 'package:flutter_2kbr/data/services/api_service.dart';
 import 'package:flutter_2kbr/providers/auth_provider.dart';
+import 'package:flutter_2kbr/widgets/navigate_animation.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -45,24 +46,27 @@ class _LoginPageState extends State<LoginPage> {
                       _usernameController.text,
                       _passwordController.text,
                     );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Login successfully')),
+                    );
                     Provider.of<AuthProvider>(context, listen: false)
                         .checkLoginStatus();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
+                    await navigateWithoutAnimation(context, HomePage());
                   } catch (e) {
                     print(e);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Failed to Login')),
+                    );
                   }
                 },
                 child: const Text('Login'),
               ),
               SizedBox(height: 8),
               TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
+                onPressed: () async {
+                  await Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => RegisterPage()),
+                    (route) => false,
                   );
                 },
                 child: const Text('Sign Up'),
