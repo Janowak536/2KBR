@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2kbr/pages/login_page.dart';
 import 'package:flutter_2kbr/providers/auth_provider.dart';
+import 'package:flutter_2kbr/widgets/navigate_animation.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_2kbr/pages/home_page.dart';
 import 'package:flutter_2kbr/pages/weather_page.dart';
@@ -41,10 +42,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton(
-                  onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  ),
+                  onPressed: () async =>
+                      await navigateWithoutAnimation(context, HomePage()),
                   child: Text(
                     'Home',
                     style: TextStyle(
@@ -54,19 +53,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     FocusManager.instance.primaryFocus?.unfocus();
                     final isLoggedIn = context.read<AuthProvider>().isLoggedIn;
                     if (isLoggedIn) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => WeatherPage()),
-                      );
+                      await navigateWithoutAnimation(context, WeatherPage());
                     } else {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
+                      await navigateWithoutAnimation(context, LoginPage());
                     }
                   },
                   child: Text('Weather',
@@ -76,10 +69,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           fontWeight: FontWeight.w700)),
                 ),
                 TextButton(
-                  onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  ),
+                  onPressed: () async =>
+                      await navigateWithoutAnimation(context, HomePage()),
                   child: Text('Front',
                       style: TextStyle(
                           color: Colors.white,
@@ -87,10 +78,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           fontWeight: FontWeight.w700)),
                 ),
                 TextButton(
-                  onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  ),
+                  onPressed: () async =>
+                      await navigateWithoutAnimation(context, HomePage()),
                   child: Text('Parapet',
                       style: TextStyle(
                           color: Colors.white,

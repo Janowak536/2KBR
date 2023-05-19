@@ -19,7 +19,7 @@ class _WeatherPageState extends State<WeatherPage> {
   void initState() {
     super.initState();
     _fetchWeatherForecasts();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
       if (!authProvider.isLoggedIn) {
         Navigator.pushAndRemoveUntil(
@@ -107,8 +107,8 @@ class _WeatherPageState extends State<WeatherPage> {
     );
   }
 
-  void _navigateToLogin() {
-    Navigator.pushReplacement(
+  Future<void> _navigateToLogin() {
+    return Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => LoginPage()),
     ).then((_) {

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2kbr/data/services/api_service.dart';
+import 'package:flutter_2kbr/pages/home_page.dart';
+import 'package:flutter_2kbr/pages/login_page.dart';
+import 'package:flutter_2kbr/widgets/navigate_animation.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -50,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Registered successfully')),
                       );
-                      Navigator.pop(context);
+                      navigateWithoutAnimation(context, LoginPage());
                     } catch (e) {
                       print(e);
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -64,6 +67,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   }
                 },
                 child: const Text('Register'),
+              ),
+              SizedBox(height: 8),
+              TextButton(
+                onPressed: () {
+                  navigateWithoutAnimation(context, LoginPage());
+                },
+                child: const Text('Sign In'),
               ),
             ],
           ),
